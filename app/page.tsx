@@ -1,12 +1,11 @@
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import Gradient from "@/components/common/gradient";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <Button className="bg-blue-500 text-white hover:bg-blue-600">
-        Click Me
-      </Button>
+    <div className="relative w-full">
+      <Gradient />
+      <div className="flex flex-col">
+      </div>
     </div>
   );
 }
