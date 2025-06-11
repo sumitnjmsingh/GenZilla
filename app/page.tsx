@@ -1,11 +1,22 @@
 import Gradient from "@/components/common/gradient";
+import HeroSection from "@/components/LandingComponent/hero-section";
+import FeatureSection from "@/components/LandingComponent/feature-section";
+import PricingSection from "@/components/LandingComponent/pricing-section";
+import TestimonialSection from "@/components/LandingComponent/testimonial-section";
+import FooterSection from "@/components/LandingComponent/footer-section";
 
 export default function Home() {
   return (
-    <div className="relative w-full">
+    <div className="relative w-full bg-white text-gray-800">
+      <div className="fixed inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(0,0,0,0.03)_0%,transparent_60%)] pointer-events-none z-0" />
       <Gradient />
-      <div className="flex flex-col">
-      </div>
+      <main className="flex flex-col min-h-screen relative z-10">
+        <HeroSection />
+        <FeatureSection />
+        <PricingSection />
+        <TestimonialSection />
+        <FooterSection />
+      </main>
     </div>
   );
 }
