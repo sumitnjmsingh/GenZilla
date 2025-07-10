@@ -10,7 +10,6 @@ import {
   Repeat,
   Languages,
   PenTool,
-  Mic,
   Image as ImageIcon,
 } from "lucide-react";
 
@@ -52,18 +51,6 @@ export const tasks: Task[] = [
     bgGradient: "from-orange-600 to-orange-800",
   },
   {
-    title: "Speech-to-Text",
-    description: "Convert audio recordings to text.",
-    route: "/dashboard/speech-to-text",
-    bgGradient: "from-red-600 to-red-800",
-  },
-  {
-    title: "Text-to-Speech",
-    description: "Generate natural-sounding voices from text.",
-    route: "/dashboard/text-to-speech",
-    bgGradient: "from-indigo-600 to-indigo-800",
-  },
-  {
     title: "Code Generation",
     description: "Generate code snippets from descriptions.",
     route: "/dashboard/code-generation",
@@ -74,12 +61,6 @@ export const tasks: Task[] = [
     description: "Explain or refactor your code.",
     route: "/dashboard/code-explanation",
     bgGradient: "from-emerald-600 to-emerald-800",
-  },
-  {
-    title: "Data Analysis & Visualization",
-    description: "Analyze datasets and generate plots.",
-    route: "/dashboard/data-analysis",
-    bgGradient: "from-cyan-600 to-cyan-800",
   },
 ];
 
@@ -107,12 +88,6 @@ export const sections = [
       desc: "Create blog posts, social media content, and more seamlessly.",
       icon: PenTool,
       color: "from-purple-500 to-purple-700",
-    },
-    {
-      title: "Speech-to-Text",
-      desc: "Convert audio recordings into text transcripts instantly.",
-      icon: Mic,
-      color: "from-blue-500 to-blue-700",
     },
     {
       title: "Image Generation",

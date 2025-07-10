@@ -1,8 +1,8 @@
 export default function TestimonialSection() {
   return (
     <>
-      <section className="py-16 px-6 relative">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-800">
+      <section className="py-16 px-6 relative bg-[#0A0C2C]">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-[#948979]">
           What Our Users Say
         </h2>
         <div className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
@@ -22,7 +22,7 @@ export default function TestimonialSection() {
           ].map((testimonial, index) => (
             <div
               key={index}
-              className="bg-white border border-gray-200 rounded-xl p-8 shadow-md transition hover:shadow-xl group"
+              className="bg-[#151744] rounded-xl p-8 shadow-xl transition hover:shadow-xl group"
             >
               <div className="flex justify-center mb-4">
                 <img
@@ -31,10 +31,10 @@ export default function TestimonialSection() {
                   className="w-14 h-14 rounded-full border-2 border-teal-200 shadow-sm transition-transform group-hover:scale-110"
                 />
               </div>
-              <p className="italic text-gray-600 mb-4 text-center">
+              <p className="italic text-neutral-400 mb-4 text-center">
                 "{testimonial.quote}"
               </p>
-              <p className="font-medium text-gray-800 text-center">
+              <p className="font-medium text-white text-center">
                 {testimonial.name}
               </p>
             </div>

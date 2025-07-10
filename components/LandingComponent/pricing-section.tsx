@@ -4,9 +4,9 @@ import { CheckCircle } from "lucide-react";
 export default function PricingSection() {
   return (
     <>
-      <section className="py-16 px-6  relative">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-800">
-          Pricing
+      <section className="py-16 px-6  relative bg-[#0A0C2C]">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-[#948979]">
+          Subscription Options
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
           {[
@@ -49,19 +49,19 @@ export default function PricingSection() {
                     key={i}
                     className="flex items-center justify-center gap-2"
                   >
-                    <CheckCircle size={16} className="text-teal-400" />
+                    <CheckCircle size={16} className="text-black" />
                     {feature}
                   </li>
                 ))}
               </ul>
               <div className="flex justify-center">
                 <Button
-                  className={`${plan.buttonStyle} font-medium rounded-full px-6 py-2 shadow-sm transition`}
+                  className={`${plan.buttonStyle} font-medium rounded-full px-6 py-2 shadow-sm transition bg-lime-600`}
                 >
                   {plan.title === "Free" ? "Try Now" : "Upgrade"}
                 </Button>
               </div>
-              <div className="mt-4 h-0.5 w-2/3 mx-auto bg-gradient-to-r from-teal-400 to-blue-400 group-hover:scale-x-110 transition-transform origin-center" />
+              <div className="mt-4 h-0.5 w-2/3 mx-auto bg-gradient-to-r from-lime-400 to-lime-600 group-hover:scale-x-110 transition-transform origin-center" />
             </div>
           ))}
         </div>

@@ -30,35 +30,12 @@ export default function Dashboard() {
           <p className="mb-4">
             Summarize your PDF files in seconds and get concise insights.
           </p>
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              window.location.href = "/dashboard/pdf-summarization";
-            }}
-            className="flex flex-col md:flex-row items-center gap-2"
+          <Link
+            href="/dashboard/pdf-summarization"
+            className="bg-white text-blue-700 hover:bg-white/90 font-semibold rounded-full shadow px-6 py-2"
           >
-            <input
-              type="file"
-              id="file"
-              accept="application/pdf"
-              className="hidden"
-              onChange={handleFileChange}
-            />
-            <label
-              htmlFor="file"
-              className="cursor-pointer px-4 py-2 bg-white/20 rounded-full border border-white text-white hover:bg-white/30 transition"
-            >
-              Choose PDF
-            </label>
-            <p className="text-sm">{fileName}</p>
-            <Link
-              href="/dashboard/pdf-summarization"
-              type="submit"
-              className="bg-white text-blue-700 hover:bg-white/90 font-semibold rounded-full shadow px-6 py-2"
-            >
-              Summarize
-            </Link>
-          </form>
+            Summarize
+          </Link>
         </div>
         <div className="flex-1 flex justify-center items-center">
           <svg
