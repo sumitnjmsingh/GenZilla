@@ -26,7 +26,6 @@ const steps = [
     title: "Download / Share",
     desc: "Export content, download images, or share outputs across your workflow with ease",
     step: 5,
-    isRightAligned: true,
   },
 ];
 
@@ -45,19 +44,15 @@ export default function AIWorkflowSteps() {
         {/* Right Flow Chart */}
         <div className="relative bg-[#151744] rounded-xl p-6 border border-indigo-700">
           <div className="flex flex-col gap-6">
-            {steps.map(({ title, desc, step, isRightAligned }) => (
+            {steps.map(({ title, desc, step }) => (
               <div
                 key={step}
-                className={`flex items-start justify-between ${
-                  isRightAligned ? "pl-12" : ""
-                }`}
               >
                 <div className="flex items-center gap-4">
                   <div className="flex items-center justify-center text-sm font-bold text-black bg-lime-400 w-6 h-6 rounded-full p-1">
                     {step}
                   </div>
                   <div
-                    className={`${isRightAligned ? "text-right w-full" : ""}`}
                   >
                     <p className="text-white font-semibold text-lg">{title}</p>
                     <p className="text-sm text-indigo-200">{desc}</p>

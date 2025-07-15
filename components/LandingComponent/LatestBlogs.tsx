@@ -12,6 +12,8 @@ interface BlogPost {
   authorId: string;
   createdAt: string;
   published: boolean;
+  authorImage?: string;
+  authorName?: string;
 }
 
 export default function LatestBlogs() {
@@ -62,9 +64,23 @@ export default function LatestBlogs() {
                 </div>
                 <h3 className="text-md font-semibold mb-3">{post.title}</h3>
                 <div className="flex items-center gap-2 mt-auto">
-                  <div className="w-6 h-6 rounded-full bg-gray-300" />
+                  {/* <div className="w-6 h-6 rounded-full bg-gray-300" />
                   <span className="text-sm text-gray-700">
                     Author ID: {post.authorId.slice(0, 6)}...
+                  </span> */}
+                  {post.authorImage ? (
+                    <Image
+                      src={post.authorImage}
+                      alt={post.authorName || "Author"}
+                      width={24}
+                      height={24}
+                      className="rounded-full"
+                    />
+                  ) : (
+                    <div className="w-6 h-6 rounded-full bg-gray-300" />
+                  )}
+                  <span className="text-sm text-gray-700">
+                    {post.authorName || "Unknown Author"}
                   </span>
                 </div>
               </div>
