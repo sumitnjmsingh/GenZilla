@@ -13,13 +13,16 @@ export default function TranslationPage() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8000/api/translate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ text: inputText }),
-      });
+      const response = await fetch(
+        "https://genzilla-pythonbackend.onrender.com/api/translate",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ text: inputText }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Translation API failed.");

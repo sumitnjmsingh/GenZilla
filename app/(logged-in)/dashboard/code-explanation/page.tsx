@@ -15,13 +15,16 @@ export default function CodeExplanationPage() {
     if (!codeSnippet.trim() || !language.trim()) return;
 
     try {
-      const response = await fetch("http://localhost:8000/api/code-explain", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ code: codeSnippet, language }),
-      });
+      const response = await fetch(
+        "https://genzilla-pythonbackend.onrender.com/api/code-explain",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ code: codeSnippet, language }),
+        }
+      );
 
       if (!response.ok) throw new Error("Failed to fetch explanation");
 

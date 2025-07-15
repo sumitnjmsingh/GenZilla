@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
     const parsed = await pdfParse(buffer);
 
     const text = parsed.text;
-    const summarizerResponse = await fetch("http://localhost:8000/api/summarize", {
+    const summarizerResponse = await fetch("https://genzilla-pythonbackend.onrender.com/api/summarize", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text }),

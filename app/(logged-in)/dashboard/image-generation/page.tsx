@@ -16,13 +16,16 @@ export default function ImageGenerationPage() {
       return;
     }
     try {
-      const response = await fetch("http://localhost:8000/api/text-to-image", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ prompt : prompt }),
-      });
+      const response = await fetch(
+        "https://genzilla-pythonbackend.onrender.com/api/text-to-image",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ prompt: prompt }),
+        }
+      );
 
       if (!response.ok) throw new Error("Failed to Generate Image");
 

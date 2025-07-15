@@ -15,7 +15,7 @@ export default function CodeGenerationPage() {
 
     try {
       const response = await fetch(
-        "http://localhost:8000/api/code-generation",
+        "https://genzilla-pythonbackend.onrender.com/api/code-generation",
         {
           method: "POST",
           headers: {
@@ -83,13 +83,11 @@ export default function CodeGenerationPage() {
             Generated Code Snippets
           </h2>
           <div className="grid grid-cols-1 gap-6">
-              <div
-                className="bg-gray-800/90 rounded-lg shadow p-4 border border-cyan-400 flex flex-col"
-              >
-                <pre className="bg-gray-900 text-green-400 text-xs p-2 rounded overflow-x-auto">
-                  {generatedCode}
-                </pre>
-              </div>
+            <div className="bg-gray-800/90 rounded-lg shadow p-4 border border-cyan-400 flex flex-col">
+              <pre className="bg-gray-900 text-green-400 text-xs p-2 rounded overflow-x-auto">
+                {generatedCode}
+              </pre>
+            </div>
           </div>
         </div>
       )}

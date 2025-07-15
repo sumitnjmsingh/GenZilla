@@ -8,19 +8,21 @@ export default function ParaphrasingPage() {
   const [inputText, setInputText] = useState("");
   const [paraphrase, setParaphrase] = useState<string>("");
 
-
   const handleParaphrase = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!inputText.trim()) return;
 
     try {
-      const response = await fetch("http://localhost:8000/api/paraphrase", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ text: inputText }),
-      });
+      const response = await fetch(
+        "https://genzilla-pythonbackend.onrender.com/api/paraphrase",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ text: inputText }),
+        }
+      );
 
       if (!response.ok) throw new Error("Failed to fetch paraphrase");
 
@@ -77,11 +79,9 @@ export default function ParaphrasingPage() {
             Paraphrased Results
           </h2>
           <div className="grid grid-cols-1">
-              <div
-                className="bg-white/90 p-4 rounded shadow border border-purple-300 flex flex-col"
-              >
-                <p className="text-purple-700">{paraphrase}</p>
-              </div>
+            <div className="bg-white/90 p-4 rounded shadow border border-purple-300 flex flex-col">
+              <p className="text-purple-700">{paraphrase}</p>
+            </div>
           </div>
         </div>
       )}

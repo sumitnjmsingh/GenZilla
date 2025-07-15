@@ -18,7 +18,7 @@ export default function QuestionAnsweringPage() {
     try {
       setLoading(true);
       const response = await fetch(
-        "http://localhost:8000/api/question-answer",
+        "https://genzilla-pythonbackend.onrender.com/api/question-answer",
         {
           method: "POST",
           headers: {

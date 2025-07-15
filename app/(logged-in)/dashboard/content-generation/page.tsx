@@ -15,13 +15,13 @@ export default function ContentGenerationPage() {
 
     try {
       const response = await fetch(
-        "http://localhost:8000/api/generate-content",
+        "https://genzilla-pythonbackend.onrender.com/api/generate-content",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ "prompt": input }),
+          body: JSON.stringify({ prompt: input }),
         }
       );
 
@@ -80,18 +80,16 @@ export default function ContentGenerationPage() {
           </form>
         </div>
 
-        { content && (
-        <div className="w-full max-w-2xl mt-8 grid grid-cols-1  gap-4">
-            <div
-              className="bg-white/90 rounded shadow p-4 border border-yellow-200 text-yellow-900"
-            >
+        {content && (
+          <div className="w-full max-w-2xl mt-8 grid grid-cols-1  gap-4">
+            <div className="bg-white/90 rounded shadow p-4 border border-yellow-200 text-yellow-900">
               {content.split("\n").map((line, index) => (
                 <p key={index} className="mb-2 last:mb-0">
                   {line.trim() || "No content generated."}
                 </p>
               ))}
             </div>
-        </div>
+          </div>
         )}
       </main>
 
