@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { LoaderCircle } from "lucide-react";
+import { LoaderCircle, FileText } from "lucide-react";
 import { useState } from "react";
 
 export default function PdfSummarizationPage() {
@@ -50,13 +50,13 @@ export default function PdfSummarizationPage() {
         <p className="text-purple-600 text-center font-medium">
           Upload a PDF and get a concise summary in seconds!
         </p>
-
-        <div className="flex flex-col md:flex-row items-center gap-4">
+        <div className="flex flex-col items-center gap-4">
           <label
             htmlFor="file"
-            className="cursor-pointer px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white rounded-full transition border"
+            className="inline-flex items-center justify-start gap-10 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-medium w-full rounded-md shadow-sm cursor-pointer transition border border-purple-700 p-4"
           >
-            Choose PDF
+            <FileText className="w-20 h-20" />
+            <span>Choose PDF</span>
           </label>
           <input
             type="file"
@@ -65,7 +65,7 @@ export default function PdfSummarizationPage() {
             className="hidden"
             onChange={handleFileChange}
           />
-          <p className="text-sm text-purple-800">{fileName}</p>
+          <p className="text-sm text-purple-800 font-medium">{fileName}</p>
         </div>
 
         <Button

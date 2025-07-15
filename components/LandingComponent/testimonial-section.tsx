@@ -13,13 +13,13 @@ export default function TestimonialSection() {
               name: "Alex Johnson",
               quote:
                 "GenZilla has transformed how I approach research – it's streamlined and efficient.",
-              avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+              avatar: "/blogs/man_42.jpg",
             },
             {
               name: "Maria Rodriguez",
               quote:
                 "The AI tools are top-notch. I can summarize and repurpose content quickly and easily.",
-              avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+              avatar: "/blogs/woman_44.jpg",
             },
           ].map((testimonial, index) => (
             <div

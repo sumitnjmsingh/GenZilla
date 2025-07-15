@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useState } from "react";
-import { LoaderCircle } from "lucide-react";
+import { LoaderCircle, ImageIcon } from "lucide-react";
 import Image from "next/image";
 
 export default function ImageGenerationPage() {
@@ -43,8 +43,7 @@ export default function ImageGenerationPage() {
     } catch (error) {
       console.error("Error generating image:", error);
       return;
-    }
-    finally {
+    } finally {
       setLoading(false);
     }
   };
@@ -57,15 +56,18 @@ export default function ImageGenerationPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-100 to-pink-200 p-8 flex flex-col items-center">
+    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-purple-200 to-purple-300 p-8 flex flex-col items-center">
       <div className="max-w-3xl w-full bg-white rounded-lg shadow p-6 flex flex-col items-center gap-6">
-        <h1 className="text-4xl font-bold text-pink-600 mb-2">
+        <h1 className="text-4xl text-center font-bold text-purple-600 mb-2">
           Image Generation
         </h1>
-        <p className="text-gray-700 text-center mb-4">
-          Create stunning images from your text prompts using powerful
-          generative AI.
-        </p>
+        <div className="flex items-center justify-center gap-2">
+          <ImageIcon className="md:h-16 md:w-16 h-32 w-32 text-purple-500 mb-4" />
+          <p className="text-gray-700 text-center mb-4">
+            Create stunning images from your text prompts using powerful
+            generative AI.
+          </p>
+        </div>
 
         <form
           onSubmit={handleGenerate}
@@ -80,7 +82,7 @@ export default function ImageGenerationPage() {
           />
           <Button
             type="submit"
-            className="bg-pink-500 hover:bg-pink-600 text-white w-full"
+            className="bg-purple-400 hover:bg-purple-600 text-white w-full"
             disabled={loading}
           >
             {loading ? (
@@ -95,7 +97,7 @@ export default function ImageGenerationPage() {
         </form>
 
         <Link href="/dashboard" className="mt-2 w-full">
-          <Button className="bg-gray-800 hover:bg-gray-900 text-white w-full">
+          <Button className="bg-purple-600 hover:bg-purple-800 text-white w-full">
             Back to Dashboard
           </Button>
         </Link>
