@@ -1,10 +1,12 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { LoaderCircle } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
 export default function CodeGenerationPage() {
+  const [loading, setLoading] = useState(false);
   const [description, setDescription] = useState("");
   const [generatedCode, setGeneratedCode] = useState<string>("");
 
@@ -12,6 +14,7 @@ export default function CodeGenerationPage() {
     e.preventDefault();
 
     if (!description.trim()) return;
+    setLoading(true);
 
     try {
       const response = await fetch(
@@ -38,6 +41,8 @@ export default function CodeGenerationPage() {
     } catch (error) {
       console.error("Code generation error:", error);
       setGeneratedCode("Error generating code. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -65,8 +70,16 @@ export default function CodeGenerationPage() {
           <Button
             type="submit"
             className="bg-cyan-500 hover:bg-cyan-600 text-white w-full"
+            disabled={loading}
           >
-            Generate Code
+             {loading ? (
+              <div className="flex items-center justify-center gap-2">
+                <LoaderCircle className="animate-spin h-5 w-5" />
+                <span>Generating...</span>
+              </div>
+            ) : (
+              "Generate Code"
+            )}
           </Button>
         </form>
 

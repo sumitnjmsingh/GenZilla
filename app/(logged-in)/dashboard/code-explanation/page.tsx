@@ -2,9 +2,11 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { LoaderCircle } from "lucide-react";
 import { useState } from "react";
 
 export default function CodeExplanationPage() {
+  const [loading, setLoading] = useState(false);
   const [codeSnippet, setCodeSnippet] = useState("");
   const [language, setLanguage] = useState("c++");
   const [explanation, setExplanation] = useState<string>("");
@@ -13,6 +15,7 @@ export default function CodeExplanationPage() {
     e.preventDefault();
 
     if (!codeSnippet.trim() || !language.trim()) return;
+    setLoading(true);
 
     try {
       const response = await fetch(
@@ -37,6 +40,8 @@ export default function CodeExplanationPage() {
     } catch (error) {
       console.error("Error explaining code:", error);
       setExplanation("⚠️ Error getting explanation from backend.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -76,8 +81,16 @@ export default function CodeExplanationPage() {
           <Button
             type="submit"
             className="bg-emerald-500 hover:bg-emerald-600 text-white w-full"
+            disabled={loading}
           >
-            Explain Code
+            {loading ? (
+              <div className="flex items-center justify-center gap-2">
+                <LoaderCircle className="animate-spin h-5 w-5" />
+                <span>Explaining...</span>
+              </div>
+            ) : (
+              "Explain Code"
+            )}
           </Button>
         </form>
 

@@ -2,16 +2,18 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Sparkles } from "lucide-react";
+import { Sparkles, LoaderCircle } from "lucide-react";
 import { useState } from "react";
 
 export default function ContentGenerationPage() {
+  const [loading, setLoading] = useState(false);
   const [content, setContent] = useState<string>("");
   const [input, setInput] = useState("");
 
   const handleGenerate = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim()) return;
+    setLoading(true);
 
     try {
       const response = await fetch(
@@ -35,6 +37,9 @@ export default function ContentGenerationPage() {
     } catch (error) {
       console.error("Content generation error:", error);
       setContent(` Error generating content for: "${input}"`);
+    }
+    finally {
+      setLoading(false);
     }
   };
 
@@ -74,8 +79,15 @@ export default function ContentGenerationPage() {
             <Button
               type="submit"
               className="bg-yellow-500 hover:bg-yellow-600 text-white"
-            >
-              Generate
+              disabled={loading}>
+              {loading ? (
+                <div className="flex items-center justify-center gap-2">
+                  <LoaderCircle className="animate-spin h-5 w-5" />
+                  <span>Generating...</span>
+                </div>
+              ) : (
+                "Generate"    
+              )}
             </Button>
           </form>
         </div>

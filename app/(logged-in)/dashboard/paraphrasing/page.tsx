@@ -2,15 +2,18 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { LoaderCircle } from "lucide-react";
 import { useState } from "react";
 
 export default function ParaphrasingPage() {
+  const [loading, setLoading] = useState(false);
   const [inputText, setInputText] = useState("");
   const [paraphrase, setParaphrase] = useState<string>("");
 
   const handleParaphrase = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!inputText.trim()) return;
+    setLoading(true);
 
     try {
       const response = await fetch(
@@ -33,6 +36,9 @@ export default function ParaphrasingPage() {
     } catch (error) {
       console.error("Error paraphrasing text:", error);
       setParaphrase(`Error paraphrasing: "${inputText}"`);
+    }
+    finally {
+      setLoading(false);
     }
   };
 
@@ -61,8 +67,16 @@ export default function ParaphrasingPage() {
           <Button
             type="submit"
             className="bg-purple-500 hover:bg-purple-600 text-white w-full"
+            disabled={loading}
           >
-            Paraphrase
+            {loading ? (
+              <div className="flex items-center justify-center gap-2">
+                <LoaderCircle className="animate-spin h-5 w-5" />
+                <span>Paraphrasing...</span>
+              </div>
+            ) : (
+              "Paraphrase"
+            )}
           </Button>
         </form>
 

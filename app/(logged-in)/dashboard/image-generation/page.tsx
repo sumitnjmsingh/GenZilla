@@ -3,9 +3,11 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useState } from "react";
+import { LoaderCircle } from "lucide-react";
 import Image from "next/image";
 
 export default function ImageGenerationPage() {
+  const [loading, setLoading] = useState(false);
   const [prompt, setPrompt] = useState("");
   const [generatedImage, setGeneratedImage] = useState<string>("");
 
@@ -15,6 +17,7 @@ export default function ImageGenerationPage() {
       console.error("Prompt cannot be empty");
       return;
     }
+    setLoading(true);
     try {
       const response = await fetch(
         "https://genzilla-pythonbackend.onrender.com/api/text-to-image",
@@ -40,6 +43,9 @@ export default function ImageGenerationPage() {
     } catch (error) {
       console.error("Error generating image:", error);
       return;
+    }
+    finally {
+      setLoading(false);
     }
   };
 
@@ -75,8 +81,16 @@ export default function ImageGenerationPage() {
           <Button
             type="submit"
             className="bg-pink-500 hover:bg-pink-600 text-white w-full"
+            disabled={loading}
           >
-            Generate Image
+            {loading ? (
+              <div className="flex items-center justify-center gap-2">
+                <LoaderCircle className="animate-spin h-5 w-5" />
+                <span>Generating...</span>
+              </div>
+            ) : (
+              "Generate Image"
+            )}
           </Button>
         </form>
 

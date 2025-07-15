@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { LoaderCircle } from "lucide-react";
 import { useState } from "react";
 
 export default function PdfSummarizationPage() {
@@ -72,7 +73,14 @@ export default function PdfSummarizationPage() {
           className="bg-purple-600 hover:bg-purple-700 text-white w-full disabled:opacity-50"
           disabled={!file || loading}
         >
-          {loading ? "⏳ Summarizing..." : "Summarize"}
+          {loading ? (
+            <div className="flex items-center justify-center gap-2">
+              <LoaderCircle className="animate-spin h-5 w-5" />
+              <span>Summarizing...</span>
+            </div>
+          ) : (
+            "Summarize PDF"
+          )}
         </Button>
 
         {summary && (

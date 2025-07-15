@@ -3,14 +3,18 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useState } from "react";
+import { LoaderCircle } from "lucide-react";
 import { Globe } from "lucide-react";
 
 export default function TranslationPage() {
+  const [loading, setLoading] = useState(false);
   const [inputText, setInputText] = useState("");
   const [translatedText, setTranslatedText] = useState<string | null>(null);
 
   const handleTranslate = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!inputText.trim()) return;
+    setLoading(true);
 
     try {
       const response = await fetch(
@@ -33,6 +37,9 @@ export default function TranslationPage() {
     } catch (error) {
       console.error("Translation error:", error);
       setTranslatedText("⚠️ Error translating text. Please try again.");
+    }
+    finally {
+      setLoading(false);
     }
   };
 
@@ -75,8 +82,16 @@ export default function TranslationPage() {
           <Button
             type="submit"
             className="bg-teal-500 hover:bg-teal-600 text-white self-end"
+            disabled={loading}
           >
-            Translate
+            {loading ? (
+              <div className="flex items-center justify-center gap-2">
+                <LoaderCircle className="animate-spin h-5 w-5" />
+                <span>Translating...</span>
+              </div>
+            ) : (
+              "Translate"
+            )}
           </Button>
         </form>
 
