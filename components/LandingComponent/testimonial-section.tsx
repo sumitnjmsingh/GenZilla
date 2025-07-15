@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function TestimonialSection() {
   return (
     <>
@@ -25,14 +27,16 @@ export default function TestimonialSection() {
               className="bg-[#151744] rounded-xl p-8 shadow-xl transition hover:shadow-xl group"
             >
               <div className="flex justify-center mb-4">
-                <img
+                <Image
                   src={testimonial.avatar}
                   alt={testimonial.name}
+                  width={56}
+                  height={56}
                   className="w-14 h-14 rounded-full border-2 border-teal-200 shadow-sm transition-transform group-hover:scale-110"
                 />
               </div>
               <p className="italic text-neutral-400 mb-4 text-center">
-                "{testimonial.quote}"
+                &quot;{testimonial.quote}&quot;
               </p>
               <p className="font-medium text-white text-center">
                 {testimonial.name}

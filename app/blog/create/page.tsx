@@ -3,10 +3,11 @@
 import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { UploadCloud, ImagePlus } from "lucide-react";
+import toast from "react-hot-toast";
+import Image from "next/image";
 
 export default function CreateBlogPage() {
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
@@ -24,21 +25,63 @@ export default function CreateBlogPage() {
     fileInputRef.current?.click();
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title || !description || !content || !image) {
+    if (!title || !content || !image) {
       alert("Please fill out all fields and upload an image.");
       return;
     }
 
-    console.log({ title, description, content, image });
-    alert("🎉 Blog submitted!");
+    try {
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("content", `${content}`);
+      formData.append("published", "true");
 
-    setTitle("");
-    setDescription("");
-    setContent("");
-    setImage(null);
-    setPreview(null);
+      const formData_image = new FormData();
+      formData_image.append("file", image);
+      formData_image.append(
+        "upload_preset",
+        process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || ""
+      );
+
+      const cloudRes = await fetch(
+        `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
+        {
+          method: "POST",
+          body: formData_image,
+        }
+      );
+
+      const cloudData = await cloudRes.json();
+
+      if (!cloudData.secure_url) {
+        toast.error("Cloudinary upload failed.");
+        return;
+      }
+      formData.append("coverImage", cloudData.secure_url);
+
+      const res = await fetch("/api/blogs", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to create blog");
+      }
+
+      const data = await res.json();
+      toast.success("Blog published!");
+      console.log("Created blog:", data);
+
+      setTitle("");
+      setContent("");
+      setImage(null);
+      setPreview(null);
+    } catch (err) {
+      console.error(err);
+      toast.error("Something went wrong while submitting the blog.");
+    }
   };
 
   return (
@@ -62,20 +105,6 @@ export default function CreateBlogPage() {
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-lime-500 focus:outline-none shadow-sm"
             />
           </div>
-
-          <div>
-            <label className="block font-semibold text-gray-700 mb-1">
-              Short Description
-            </label>
-            <input
-              type="text"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="e.g., Learn how to combine LLMs for better output"
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none shadow-sm"
-            />
-          </div>
-
           <div>
             <label className="block font-semibold text-gray-700 mb-1">
               Blog Content
@@ -129,11 +158,14 @@ export default function CreateBlogPage() {
             </div>
 
             {preview && (
-              <img
+              <Image
+                width={400}
+                height={200}
+                unoptimized   
                 src={preview}
                 alt="Preview"
                 className="mt-4 max-h-64 w-full object-cover rounded-xl border border-gray-300 shadow"
-              />
+              />  
             )}
           </div>
 

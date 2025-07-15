@@ -3,6 +3,7 @@ import { Source_Sans_3 as FontSans } from "next/font/google";
 import Header from "@/components/common/header";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "react-hot-toast";
 
 const fontSans = FontSans({
   variable: "--font-sans",
@@ -32,6 +33,15 @@ export default function RootLayout({
             <Header />
             <main className="flex-1">{children}</main>
           </div>
+          <Toaster
+            toastOptions={{
+              className: "bg-gray-800 text-white",
+              style: {
+                fontSize: "0.875rem",
+                padding: "0.5rem 1rem",
+              },
+            }}
+          />
         </body>
       </html>
     </ClerkProvider>

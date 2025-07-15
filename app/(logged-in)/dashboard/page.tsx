@@ -3,17 +3,10 @@
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
 import { tasks } from "@/utils/tasks";
 import DashboardInfo from "@/components/DashboardInfo";
 
 export default function Dashboard() {
-  const [fileName, setFileName] = useState<string>("No file selected");
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    setFileName(file ? file.name : "No file selected");
-  };
 
   return (
     <section className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-8 flex flex-col gap-8">

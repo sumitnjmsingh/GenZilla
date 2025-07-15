@@ -81,7 +81,7 @@ export default function PrivacyPolicyPage() {
             7. Changes to This Policy
           </h2>
           <p>
-            This privacy policy may be updated periodically. We'll notify users
+            This privacy policy may be updated periodically. We&#39;ll notify users
             via email or in-app banners if major changes occur.
           </p>
 

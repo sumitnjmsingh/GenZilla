@@ -98,8 +98,8 @@ export default function AssessmentPage() {
                 Assessment Submitted ✅
               </h2>
               <p className="text-md text-purple-600">
-                Thanks for sharing! We'll tailor GenAI experiences that align
-                with your needs.
+                Thanks for sharing! We&#39;ll tailor GenAI experiences that
+                align with your needs.
               </p>
               <div className="mt-6 text-sm text-gray-500">
                 Explore your personalized{" "}

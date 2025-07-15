@@ -2,7 +2,8 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import Image from "next/image";
 
 export default function ImageGenerationPage() {
   const [prompt, setPrompt] = useState("");
@@ -90,10 +91,14 @@ export default function ImageGenerationPage() {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             <div className="bg-white rounded-lg shadow hover:shadow-lg transition-shadow flex flex-col items-center p-4">
-              <img
+              <Image
                 src={generatedImage}
                 alt="Generated Image"
+                width={400}
+                height={192}
                 className="rounded mb-4 w-full h-48 object-cover"
+                style={{ objectFit: "cover", width: "100%", height: "12rem" }}
+                unoptimized
               />
               <Button
                 onClick={() => handleDownload(generatedImage)}
